@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>movie search site</title>
+  <!-- cdn -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <!-- custom -->
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="js/main.js"></script>
+</head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <div class="header__inner">
+          <a href="javascript:;" class="header__logo">MOVIE</a>
+          <div class="header__search">
+            <input
+              type="text"
+              class="header__search-input"
+              placeholder="search"
+            />
+            <button class="header__search-button" type="submit"></button>
+          </div>
+          <button class="header__bookmark"></button>
+        </div>
+      </header>
+      <section>
+        <ul class="section__list"></ul>
+      </section>
+      <footer></footer>
+    </div>
+  </body>
+</html>
