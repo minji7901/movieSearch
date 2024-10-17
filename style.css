@@ -73,26 +73,16 @@ header {
   margin: 0 20px 0 auto;
   font-size: 1.125rem;
   border-radius: 5px;
-  max-width: 40px;
+  max-width: 500px;
   height: 35px;
   width: 100%;
   overflow: hidden;
-  transition: max-width 0.3s ease, background 0.3s;
-}
-.header__search--active {
-  max-width: 500px;
   background: rgba(255, 255, 255, 0.2);
 }
-.header__search--active .header__search-input {
-  width: calc(100% - 40px);
-}
-.header__search--active .header__search-button::before {
-  color: #0a0d1e;
-}
 .header__search-input {
-  width: 0;
   padding: 10px;
   color: #fff;
+  width: calc(100% - 40px);
   transition: width 0.3s ease;
 }
 .header__search-input::placeholder {
@@ -120,24 +110,23 @@ header {
   font-weight: 700;
 }
 
+section {
+  margin: 30px auto 100px;
+  max-width: 1280px;
+  width: 100%;
+}
 .section__list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 50px 20px;
-  max-width: 1280px;
-  width: 100%;
-  margin: 30px auto 100px;
+  gap: 30px;
 }
 .section__list-item {
   cursor: pointer;
   opacity: 0.5;
+  height: 100%;
   border-radius: 5px;
   transition: 0.3s all;
   box-shadow: 0 0 10px 7px rgba(255, 255, 255, 0.1);
-}
-.section__list-item:hover {
-  opacity: 1;
-  animation: swing 2s ease-in-out infinite;
 }
 
 @keyframes swing {
@@ -158,6 +147,7 @@ header {
 .section__list-imgbox {
   position: relative;
   height: 340px;
+  text-align: right;
   overflow: hidden;
   border-radius: 5px 5px 0 0;
 }
@@ -190,7 +180,7 @@ header {
   width: 800px;
   color: #ddd;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.2);
@@ -205,15 +195,21 @@ header {
   content: "\f00d";
   font: 700 2rem "Font Awesome 6 Free";
 }
+.modal__inner {
+  max-height: 600px;
+  overflow: auto;
+  margin: 20px 0;
+}
 .modal__img {
   max-width: 300px;
+  width: 100%;
 }
 .modal__title {
   font-size: 1.5rem;
   font-weight: bold;
 }
 .modal__overview {
-  margin: 10px auto 15px;
+  margin: 10px auto 0;
   max-width: 500px;
   word-break: keep-all;
   font-size: 0.875rem;
@@ -236,7 +232,7 @@ header {
   z-index: -1;
   top: 50%;
   left: 50%;
-  width: 70px;
+  width: 70%;
   height: 30px;
   filter: blur(10px);
   transform: translate(-50%, -50%);
@@ -244,7 +240,77 @@ header {
   border-radius: 50px;
   background-color: #ffd700;
 }
-.modal__add:hover::before {
-  width: calc(100% + 10px);
-  height: calc(100% + 10px);
+
+@media (hover: hover) and (pointer: fine) {
+  .section__list-item:hover {
+    opacity: 1;
+    animation: swing 2s ease-in-out infinite;
+  }
+
+  .modal__add:hover::before {
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .section__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .header__inner {
+    max-width: none;
+    padding: 0 20px;
+  }
+  section {
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .section__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .section__list-item {
+    opacity: 1;
+  }
+  .modal {
+    width: 80%;
+    padding: 50px 20px 20px 20px;
+  }
+  .modal__inner {
+    max-height: 900px;
+    margin: 20px 0;
+    overflow: auto;
+  }
+  .modal__add::before {
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+  }
+  .section__list-item {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+  }
+  .section__list-imgbox {
+    height: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header__inner {
+    gap: 10px;
+  }
+  .header__search {
+    margin: 0 0 0 auto;
+  }
+  .section__list {
+    grid-template-columns: 1fr;
+  }
+  .modal {
+    width: 90%;
+    padding: 30px 20px 20px 20px;
+  }
+  .modal__close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal__inner {
+    max-height: 300px;
+  }
 }
