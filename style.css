@@ -1,5 +1,12 @@
 /* import */
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playball&display=swap");
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* Reset CSS */
 * {
@@ -44,8 +51,11 @@ dialog {
 body {
   margin: 0;
   color: #fff;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "SpoqaHanSansNeo-Regular";
   background-color: #0a0d1e;
+}
+body.hidden {
+  overflow: hidden;
 }
 header {
   z-index: 10;
@@ -63,8 +73,9 @@ header {
 }
 .header__logo {
   color: #fff;
-  font: 2.25rem "Nanum Brush Script", cursive;
-  text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700;
+  font: 2.25rem "Playball", cursive;
+  letter-spacing: 3px;
+  text-shadow: 7px 3px 9px #ffd700, 0px -2px 1px #fff;
 }
 .header__search {
   position: relative;
@@ -176,14 +187,27 @@ section {
 }
 
 .modal {
-  padding: 30px 20px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 700px;
   width: 800px;
   color: #ddd;
   text-align: center;
+  padding: 40px 20px 30px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%);
 }
 .modal__close {
   position: absolute;
@@ -195,8 +219,8 @@ section {
   content: "\f00d";
   font: 700 2rem "Font Awesome 6 Free";
 }
-.modal__inner {
-  max-height: 600px;
+.modal__cont {
+  height: calc(100% - 80px);
   overflow: auto;
   margin: 20px 0;
 }
@@ -205,6 +229,7 @@ section {
   width: 100%;
 }
 .modal__title {
+  margin-top: 5px;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -219,26 +244,19 @@ section {
   position: relative;
   padding: 5px 15px;
   letter-spacing: 1px;
-  color: #fff;
-  font: 700 1.5rem "Nanum Brush Script", cursive;
-  border: 1px solid #ffd700;
+  /* color: #fff; */
+  border: 2px solid transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
   border-radius: 100px;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.1);
+  background: #ffd700;
+  transition: 0.3s;
 }
-.modal__add::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  width: 70%;
-  height: 30px;
-  filter: blur(10px);
-  transform: translate(-50%, -50%);
-  transition: 0.5s;
-  border-radius: 50px;
-  background-color: #ffd700;
+.modal__add:hover {
+  color: #fff;
+  box-shadow: 0 0 10px 5px rgba(255, 217, 0, 0.3);
+  border-color: #ffd700;
+  background: transparent;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -254,10 +272,13 @@ section {
 }
 
 @media screen and (max-width: 1400px) {
+  .header__inner {
+    padding: 0 20px;
+  }
   .section__list {
     grid-template-columns: repeat(4, 1fr);
   }
-  .header__inner {
+  .modal__cont {
     max-width: none;
     padding: 0 20px;
   }
@@ -272,12 +293,11 @@ section {
   .section__list-item {
     opacity: 1;
   }
-  .modal {
+  .modal__inner {
     width: 80%;
     padding: 50px 20px 20px 20px;
   }
-  .modal__inner {
-    max-height: 900px;
+  .modal__cont {
     margin: 20px 0;
     overflow: auto;
   }
@@ -302,15 +322,16 @@ section {
   .section__list {
     grid-template-columns: 1fr;
   }
-  .modal {
+  .modal__inner {
     width: 90%;
     padding: 30px 20px 20px 20px;
+    height: 80%;
   }
   .modal__close {
     top: 15px;
     right: 20px;
   }
-  .modal__inner {
-    max-height: 300px;
+  .modal__cont {
+    height: calc(100% - 90px);
   }
 }
