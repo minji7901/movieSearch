@@ -8,7 +8,6 @@ export async function getMovieDataElement(data) {
   }
 }
 function createListItem(movie) {
-  console.log(movie)
   const listItem = document.createElement("li");
   const vote = movie.vote_average.toFixed(1);
   const day = movie.release_date.slice(0, 4);
