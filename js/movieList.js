@@ -1,5 +1,4 @@
-import { createModal } from "./modal.js";
-  
+import { getMovieData } from "./api.js";
 export async function getMovieDataElement(data) {
   const fragment = document.createDocumentFragment();
   for (const movie of data) {
@@ -8,8 +7,8 @@ export async function getMovieDataElement(data) {
     document.querySelector(".section__list").appendChild(fragment);
   }
 }
-
 function createListItem(movie) {
+  console.log(movie)
   const listItem = document.createElement("li");
   const vote = movie.vote_average.toFixed(1);
   const day = movie.release_date.slice(0, 4);
@@ -27,7 +26,7 @@ function createListItem(movie) {
     .querySelector(".section__list-item")
     .addEventListener("click", () => {
       document.querySelector("body").classList.add("hidden");
-      createModal(movie);
+      getMovieData(false, movie.id);
     });
   return listItem;
 }
