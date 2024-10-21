@@ -23,7 +23,6 @@ export async function getMovieData(keyword) {
     }
     let data = await res.json();
     data = data.results;
-    console.log(data)
     document.querySelector(".section__list").innerHTML = "";
     await getMovieDataElement(data);
   } catch (error) {
