@@ -37,8 +37,8 @@ export function createModal(data) {
       window.localStorage.removeItem(data.title);
       alert("북마크에서 삭제되었습니다.");
       bookmarkButton.innerHTML = "Add bookmark";
-      
-      const event = new CustomEvent('bookmarkUpdated');
+
+      const event = new CustomEvent("bookmarkUpdate");
       window.dispatchEvent(event);
     } else {
       window.localStorage.setItem(data.title, JSON.stringify(data));

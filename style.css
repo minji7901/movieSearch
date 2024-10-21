@@ -57,6 +57,18 @@ body {
 body.hidden {
   overflow: hidden;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #333;
+}
+
 header {
   z-index: 10;
   position: sticky;
@@ -118,6 +130,7 @@ header {
   font: 400 1.125rem "Font Awesome 6 Free";
 }
 .header__bookmark--active::before {
+  color: #ffd700;
   font-weight: 700;
 }
 
@@ -224,6 +237,9 @@ section {
   overflow: auto;
   margin: 20px 0;
 }
+.modal__cont::-webkit-scrollbar {
+  width: 5px;
+}
 .modal__img {
   max-width: 300px;
   width: 100%;
@@ -237,7 +253,6 @@ section {
   margin: 10px auto 0;
   max-width: 500px;
   word-break: keep-all;
-  font-size: 0.875rem;
 }
 .modal__add {
   z-index: 10;
@@ -310,6 +325,12 @@ section {
   }
   .section__list-imgbox {
     height: auto;
+  }
+  .modal__add {
+    color: #fff;
+    box-shadow: 0 0 10px 5px rgba(255, 217, 0, 0.3);
+    border-color: #ffd700;
+    background: transparent;
   }
 }
 @media screen and (max-width: 768px) {

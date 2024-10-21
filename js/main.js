@@ -7,9 +7,10 @@ const logo = document.querySelector(".header__logo");
 logo.addEventListener("click", () => {
   getMovieData();
   searchInput.value = null;
+  bookmarkBtn.classList.remove('header__bookmark--active')
 });
 
-const bookmarkBtn = document.querySelector('.header__bookmark');
+export const bookmarkBtn = document.querySelector('.header__bookmark');
 bookmarkBtn.addEventListener('click', getBookmark)
 
 getMovieData();
