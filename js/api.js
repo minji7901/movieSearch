@@ -1,4 +1,4 @@
-import {getMovieDataElement} from './movieList.js';
+import { getMovieDataElement } from "./movieList.js";
 
 const options = {
   method: "GET",
@@ -10,10 +10,11 @@ const options = {
 };
 
 export async function getMovieData(keyword) {
+  const randomNum = Math.floor(Math.random() * 31 + 1);
   const url = `https://api.themoviedb.org/3/${
     keyword
       ? `search/movie?language=ko&query=${keyword}`
-      : "movie/popular?language=ko&page=1"
+      : `movie/popular?language=ko&page=${randomNum}`
   }`;
   try {
     const res = await fetch(url, options);
@@ -22,6 +23,7 @@ export async function getMovieData(keyword) {
     }
     let data = await res.json();
     data = data.results;
+    console.log(data)
     document.querySelector(".section__list").innerHTML = "";
     await getMovieDataElement(data);
   } catch (error) {
