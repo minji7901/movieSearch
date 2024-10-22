@@ -70,6 +70,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .modal__add:hover {
+    color: initial;
     background: #ffd700;
     box-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700,0 0 30px #ffd700;
   }
