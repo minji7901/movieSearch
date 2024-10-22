@@ -3,6 +3,8 @@ import { search } from "./search.js";
 import { getBookmark } from "./bookmark.js";
 
 export const searchInput = document.querySelector(".header__search-input");
+export const bookmarkBtn = document.querySelector('.header__bookmark');
+
 const logo = document.querySelector(".header__logo");
 logo.addEventListener("click", () => {
   getMovieData();
@@ -10,7 +12,6 @@ logo.addEventListener("click", () => {
   bookmarkBtn.classList.remove('header__bookmark--active')
 });
 
-export const bookmarkBtn = document.querySelector('.header__bookmark');
 bookmarkBtn.addEventListener('click', getBookmark)
 
 getMovieData();

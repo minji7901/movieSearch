@@ -23,15 +23,19 @@ function createListItem(movie) {
     document.querySelector("body").classList.add("hidden");
     getMovieData(false, movie.id);
   });
-  listItem.addEventListener("mouseenter", () => {
-    document.querySelectorAll(".section__list li").forEach((item) => {
-      item.style.opacity = "0.3";
-    });
+
+  const listItemParent = document.querySelector(".section__list");
+  listItemParent.addEventListener("mouseenter", (event) => {
+    if(event.target.tagName !== 'LI'){
+      listItem.style.opacity = "0.3";
+    }
+    document.querySelector("header").style.opacity = "0.3";
   });
-  listItem.addEventListener("mouseleave", () => {
-    document.querySelectorAll(".section__list li").forEach((item) => {
-      item.style.opacity = "1";
-    });
+  listItemParent.addEventListener("mouseleave", (event) => {
+    if(event.target.tagName !== 'LI'){
+      listItem.style.opacity = "1";
+    }
+    document.querySelector("header").style.opacity = "1";
   });
   return listItem;
 }

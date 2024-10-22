@@ -28,7 +28,7 @@ export async function getMovieData(keyword, videoId) {
     }
     let data = await res.json();
     if (!videoId) {
-      data = data.results
+      data = data.results;
       document.querySelector(".section__list").innerHTML = "";
       await getMovieDataElement(data);
     } else {
