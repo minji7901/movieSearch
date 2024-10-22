@@ -10,7 +10,7 @@ const options = {
   },
 };
 const BASE_URL = "https://api.themoviedb.org/3";
-const LANGUAGE_PARAM = "language=ko";
+const LANGUAGE_PARAM = "language=ko-kr";
 
 export async function getMovieData(keyword, videoId) {
   const randomNum = Math.floor(Math.random() * 31 + 1);
