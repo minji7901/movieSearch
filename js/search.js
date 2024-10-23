@@ -13,6 +13,7 @@ export function search() {
       }, delay);
     };
   }
+  const debounceSearch = debounce(handleSearch, 300);
 
   function handleSearch() {
     let searchInputValue = searchInput.value;
@@ -23,8 +24,6 @@ export function search() {
       getMovieData(regexValue);
     }
   }
-
-  const debounceSearch = debounce(handleSearch, 300);
 
   function onEnterKey(e) {
     if (e.key === "Enter") {

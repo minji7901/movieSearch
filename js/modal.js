@@ -1,7 +1,6 @@
 import { handleBookmarkToggle, isBookmarked } from "./bookmark.js";
 
 export function createModal(data) {
-  console.log(data);
   const modalItem = document.createElement("div");
   modalItem.classList.add("modal");
   let modalGenres = [];
@@ -10,18 +9,23 @@ export function createModal(data) {
   modalItem.innerHTML = `
     <div class="modal__inner">
       <button class="modal__close"></button>
-      <div class="modal__cont">
-        <img src="https://image.tmdb.org/t/p/original${
-          data.poster_path
-        }" class="modal__img" />
-        <p class="modal__title">${data.title}</p>
-        <span class="modal__vote">평점 ${data.vote_average.toFixed(1)}</span>
-        <div class="modal__genres">
-          ${modalGenres}
+      <div class="modal__flex">
+        <div class="modal__img">
+          <img src="https://image.tmdb.org/t/p/original${data.poster_path}" />
         </div>
-        <p class="modal__overview">${
-          data.overview ? data.overview : "줄거리가 없음"
-        }</p>
+        <div class="modal__cont">
+          <p class="modal__info">
+          ${data.release_date.slice(0, 4)}년 · ${data.runtime}분
+          </p>
+          <h2 class="modal__title">${data.title}</h2>
+          <p class="modal__vote">평점 : ${data.vote_average.toFixed(1)}</p>
+          <p class="modal__genres">
+            장르 : ${modalGenres}
+          </p>
+          <p class="modal__overview">${
+            data.overview ? data.overview : "줄거리가 없음"
+          }</p>
+        </div>
       </div>
       <button class="modal_btn">${
         isBookmarked(data.id) ? "UNMARK" : "MARK"

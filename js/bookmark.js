@@ -1,3 +1,4 @@
+import { getMovieData } from "./api.js";
 import { closeModal } from "./modal.js";
 import { getMovieDataElement } from "./movieList.js";
 
@@ -20,6 +21,7 @@ function removeBookmark(movieId) {
   bookmarks = bookmarks.filter((movie) => movie.id !== movieId);
   localStorage.setItem("movies", JSON.stringify(bookmarks));
   alert("북마크에서 삭제되었습니다.");
+  window.dispatchEvent(new CustomEvent("bookmarkUpdated"));
 }
 export function handleBookmarkToggle(data) {
   const bookmarkToggleBtn = document.querySelector(".modal_btn");
@@ -35,17 +37,24 @@ export function handleBookmarkToggle(data) {
 }
 
 export function displayBookmarked() {
+  const bookmarkBtn = document.querySelector(".nav__bookmark");
+  const wrap = document.querySelector(".wrap");
   if (!localStorage.key(0)) {
     alert("저장된 북마크가 없습니다");
     return;
+  } else if (localStorage.getItem("movies") === "[]") {
+    alert("저장된 북마크가 없습니다");
+    bookmarkBtn.classList.remove("nav__bookmark--active");
+    wrap.classList.remove("wrap--pointer-none");
+    return getMovieData();
   }
   const sectionList = document.querySelector(".section__list");
-  const wrap = document.querySelector('.wrap');
   const bookmarkData = getBookmarks();
 
   sectionList.innerHTML = "";
   wrap.classList.add("wrap--pointer-none");
+  bookmarkBtn.classList.add("nav__bookmark--active");
   getMovieDataElement(bookmarkData);
 }
 
-window.addEventListener("bookmarkUpdate", displayBookmarked);
+window.addEventListener("bookmarkUpdated", displayBookmarked);
