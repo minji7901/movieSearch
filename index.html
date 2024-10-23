@@ -12,13 +12,17 @@
   <!-- custom -->
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/popup.css" />
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/index.js"></script>
 </head>
   <body>
     <div class="wrap">
       <header class="header">
         <div class="header__inner">
-          <a href="javascript:;" class="header__logo">MOVIE</a>
+          <h1 class="header__logo">MOVIE</h1>
+          <nav class="header__nav">
+            <a href="javascript:;" class="header__nav-item nav__home">HOME</a>
+            <a href="javascript:;" class="header__nav-item nav__bookmark">BOOKMARK</a>
+          </nav>
           <div class="header__search">
             <input
               type="text"
@@ -27,7 +31,6 @@
             />
             <button class="header__search-button" type="submit"></button>
           </div>
-          <button class="header__bookmark"></button>
         </div>
       </header>
       <section>
