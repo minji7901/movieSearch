@@ -1,4 +1,5 @@
 import { getMovieData } from "./api.js";
+
 export async function getMovieDataElement(data) {
   const fragment = document.createDocumentFragment();
   for (const movie of data) {

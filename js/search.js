@@ -1,5 +1,5 @@
 import { getMovieData } from "./api.js";
-import { bookmarkBtn, searchInput } from "./main.js";
+const searchInput = document.querySelector(".header__search-input");
 
 export function search() {
   const searchBtn = document.querySelector(".header__search-button");
@@ -21,14 +21,15 @@ export function search() {
     );
     if (regexValue) {
       getMovieData(regexValue);
-      bookmarkBtn.classList.remove("header__bookmark--active");
     }
   }
 
   const debounceSearch = debounce(handleSearch, 300);
 
   function onEnterKey(e) {
-    if (e.key === "Enter") handleSearch();
+    if (e.key === "Enter") {
+      handleSearch();
+    }
   }
 
   searchBtn.addEventListener("click", handleSearch);

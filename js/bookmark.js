@@ -1,21 +1,51 @@
-import { getMovieData } from "./api.js";
-import { bookmarkBtn } from "./main.js";
+import { closeModal } from "./modal.js";
 import { getMovieDataElement } from "./movieList.js";
 
-export function getBookmark() {
+function getBookmarks() {
+  return JSON.parse(localStorage.getItem("movies")) || [];
+}
+
+export function isBookmarked(movieId) {
+  const existingData = getBookmarks();
+  return existingData.some((movie) => movie.id === movieId);
+}
+function addBookmark(movieData) {
+  const bookmarks = getBookmarks();
+  bookmarks.push(movieData);
+  localStorage.setItem("movies", JSON.stringify(bookmarks));
+  alert("북마크에 추가되었습니다.");
+}
+function removeBookmark(movieId) {
+  let bookmarks = getBookmarks();
+  bookmarks = bookmarks.filter((movie) => movie.id !== movieId);
+  localStorage.setItem("movies", JSON.stringify(bookmarks));
+  alert("북마크에서 삭제되었습니다.");
+}
+export function handleBookmarkToggle(data) {
+  const bookmarkToggleBtn = document.querySelector(".modal_btn");
+  const isBookmarkedMovie = isBookmarked(data.id);
+  if (isBookmarkedMovie) {
+    removeBookmark(data.id);
+    bookmarkToggleBtn.innerHTML = "MARK";
+  } else {
+    addBookmark(data);
+    bookmarkToggleBtn.innerHTML = "UNMARK";
+  }
+  closeModal();
+}
+
+export function displayBookmarked() {
   if (!localStorage.key(0)) {
     alert("저장된 북마크가 없습니다");
     return;
   }
-  const bookmarkData = Array.from({ length: localStorage.length }, (_, i) => {
-    const key = localStorage.key(i);
-    return JSON.parse(localStorage.getItem(key));
-  });
-  document.querySelector(".section__list").innerHTML = "";
+  const sectionList = document.querySelector(".section__list");
+  const wrap = document.querySelector('.wrap');
+  const bookmarkData = getBookmarks();
+
+  sectionList.innerHTML = "";
+  wrap.classList.add("wrap--pointer-none");
   getMovieDataElement(bookmarkData);
-  if (!bookmarkBtn.classList.contains("header__bookmark--active")) {
-    bookmarkBtn.classList.add("header__bookmark--active");
-  }
 }
 
-window.addEventListener("bookmarkUpdate", getBookmark);
+window.addEventListener("bookmarkUpdate", displayBookmarked);

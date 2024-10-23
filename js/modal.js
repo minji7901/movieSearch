@@ -1,6 +1,12 @@
+import { handleBookmarkToggle, isBookmarked } from "./bookmark.js";
+
 export function createModal(data) {
+  console.log(data);
   const modalItem = document.createElement("div");
   modalItem.classList.add("modal");
+  let modalGenres = [];
+  data.genres.forEach((genres) => modalGenres.push(genres.name));
+  modalGenres = modalGenres.join(" , ");
   modalItem.innerHTML = `
     <div class="modal__inner">
       <button class="modal__close"></button>
@@ -9,44 +15,28 @@ export function createModal(data) {
           data.poster_path
         }" class="modal__img" />
         <p class="modal__title">${data.title}</p>
+        <span class="modal__vote">평점 ${data.vote_average.toFixed(1)}</span>
+        <div class="modal__genres">
+          ${modalGenres}
+        </div>
         <p class="modal__overview">${
           data.overview ? data.overview : "줄거리가 없음"
         }</p>
       </div>
-      <button class="modal__add">${
-        window.localStorage.getItem(data.title)
-          ? "Remove bookmark"
-          : "Add bookmark"
+      <button class="modal_btn">${
+        isBookmarked(data.id) ? "UNMARK" : "MARK"
       }</button>
     </div>
   `;
   document.querySelector(".wrap").appendChild(modalItem);
-
   const modalCloseBtn = document.querySelector(".modal__close");
-  const bookmarkButton = document.querySelector(".modal__add");
+  modalCloseBtn.addEventListener("click", closeModal);
+  const bookmarkToggleBtn = document.querySelector(".modal_btn");
+  bookmarkToggleBtn.addEventListener("click", () => handleBookmarkToggle(data));
+}
 
-  function modalClose() {
-    document.body.classList.remove("hidden");
-    document.querySelector(".wrap").removeChild(modalItem);
-  }
-
-  function bookmarkToggle() {
-    const isBookmarked = window.localStorage.getItem(data.title);
-    if (isBookmarked) {
-      window.localStorage.removeItem(data.title);
-      alert("북마크에서 삭제되었습니다.");
-      bookmarkButton.innerHTML = "Add bookmark";
-    } else {
-      window.localStorage.setItem(data.title, JSON.stringify(data));
-      alert("북마크에 추가되었습니다.");
-      bookmarkButton.innerHTML = "Remove bookmark";
-    }
-    if (document.querySelector(".header__bookmark--active")) {
-      window.dispatchEvent(new CustomEvent("bookmarkUpdate"));
-    }
-    modalClose();
-  }
-
-  modalCloseBtn.addEventListener("click", modalClose);
-  bookmarkButton.addEventListener("click", bookmarkToggle);
+export function closeModal() {
+  const modalItem = document.querySelector(".modal");
+  document.body.classList.remove("hidden");
+  document.querySelector(".wrap").removeChild(modalItem);
 }
