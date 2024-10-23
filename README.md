@@ -2,12 +2,13 @@
 Vanilla.js + TMDB API 사용하여 영화 리스트를 보여주는 사이트입니다.
 ## 🎨style guide
 - color
-  - bg #0A0D1E 다크블루
-  - point #FFD700 노랑 (버튼, 링크, 강조 텍스트에 사용)
-  - font #fff
+  - bg #0d0d0d 검정계열
+  - point #f2c94c 노랑 (버튼, 링크, 강조 텍스트에 사용)
+  - font #a9a9a9
 - font
   - 기본 SpoqaHanSansNeo-Regular
-  - 로고 Playball
+  - 로고 Bad Script
+  - 네비바 Just Another Hand
 
 ## ✅ 기능
 - ~~TMDB API 연동 2024-10-16~~
@@ -33,9 +34,9 @@ Vanilla.js + TMDB API 사용하여 영화 리스트를 보여주는 사이트입
   - 영화 아이템을 클릭하면 팝업창으로 노출
   - 실시간으로 검색하면 해당 영화리스트를 보여줌
 - 팝업
-  - 선택한 영화의 포스터 및 줄거리를 보여줌
+  - 선택한 영화의 정보를 보여줌
   - 북마크를 추가/삭제 할 수 있음
 - 북마크
   - 북마크 한 영화 리스트를 보여줌
   - 북마크를 삭제하면 새로고침 되어서 삭제한 해당 북마크가 사라짐
-- ![MOVIE1-ezgif com-crop](https://github.com/user-attachments/assets/075116a1-229c-4e57-a8a1-8bc3dccd2e76)
+- ![MOVIE-ezgif com-crop](https://github.com/user-attachments/assets/ebd7a239-35e2-49a4-a4d9-d13b5d8ab291)
