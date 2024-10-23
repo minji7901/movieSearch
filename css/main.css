@@ -4,65 +4,61 @@ header {
   z-index: 10;
   position: sticky;
   top: 0;
-  backdrop-filter: blur(10px);
-  background: rgba(10, 13, 30, 0.8);
+  backdrop-filter: blur(15px);
 }
 .header__inner {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   max-width: 1280px;
   height: 80px;
   margin: 0 auto;
 }
 .header__logo {
-  color: #fff;
-  font: 2.25rem "Playball", cursive;
-  letter-spacing: 3px;
-  text-shadow: 7px 3px 9px #ffd700, 0px -2px 1px #fff;
+  color: #f2c94c;
+  font: 2.25rem "Bad Script", cursive;
+}
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.header__nav-item {
+  color: #c0c0c0;
+  font: 2rem "Just Another Hand", cursive;
+}
+.nav__bookmark--active {
+  color: #f2c94c;
+  text-decoration: underline;
 }
 .header__search {
   position: relative;
   display: flex;
   align-items: stretch;
-  margin: 0 20px 0 auto;
   font-size: 1.125rem;
   border-radius: 5px;
-  max-width: 500px;
   height: 35px;
-  width: 100%;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.2);
 }
 .header__search-input {
   padding: 10px;
-  color: #fff;
-  width: calc(100% - 40px);
+  color: #a9a9a9;
+  width: 300px;
   transition: width 0.3s ease;
 }
 .header__search-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #a9a9a9;
 }
 .header__search-button {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
   width: 40px;
-  color: #fff;
+  color: #a9a9a9;
   border-radius: 5px;
 }
 .header__search-button::before {
   content: "\f002";
   font: 900 1.125rem "Font Awesome 6 Free";
-}
-.header__bookmark::before {
-  content: "\f02e";
-  color: #fff;
-  font: 400 1.125rem "Font Awesome 6 Free";
-}
-.header__bookmark--active::before {
-  color: #ffd700;
-  font-weight: 700;
 }
 
 section {
@@ -74,15 +70,19 @@ section {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 30px;
+  pointer-events: visible;
+}
+.section__list--pointer-none {
+  pointer-events: none;
 }
 .section__list li {
+  pointer-events: visible;
   cursor: pointer;
   height: 100%;
   border-radius: 5px;
   transition: 0.3s all;
   box-shadow: 0 0 10px 7px rgba(255, 255, 255, 0.1);
 }
-
 @keyframes swing {
   0% {
     transform: perspective(500px) rotateY(20deg);
@@ -97,7 +97,16 @@ section {
     box-shadow: 0 0 10px 7px rgba(255, 255, 255, 1);
   }
 }
-
+.wrap--pointer-none header {
+  opacity: 1 !important;
+}
+.wrap--pointer-none .section__list li {
+  opacity: 1 !important;
+  box-shadow: 0 0 10px 7px rgba(255, 255, 255, 0.7);
+}
+.wrap--pointer-none .section__list li p {
+  color: #fff;
+}
 .section__list-imgbox {
   position: relative;
   height: 340px;
@@ -112,7 +121,7 @@ section {
   position: absolute;
   right: 0;
   bottom: 0;
-  color: #ffd700;
+  color: #f2c94c;
   padding: 0 5px;
   font-size: 0.875rem;
   border-radius: 5px 0 0 0;
@@ -120,12 +129,12 @@ section {
 }
 .section__list-title {
   margin: 10px 0 10px 10px;
-  color: #fff;
+  color: #a9a9a9;
 }
 .section__list-day {
   margin-left: 10px;
   padding-bottom: 10px;
-  color: #ccc;
+  color: #a9a9a9;
   font-size: 0.875rem;
 }
 
@@ -133,6 +142,12 @@ section {
   .section__list li:hover {
     opacity: 1 !important;
     animation: swing 2s ease-in-out infinite;
+  }
+  .section__list li:hover p {
+    color: #fff;
+  }
+  .wrap--pointer-none .section__list li:hover {
+    animation: none;
   }
 }
 

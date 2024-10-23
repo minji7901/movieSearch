@@ -1,5 +1,5 @@
 /* import */
-@import url("https://fonts.googleapis.com/css2?family=Playball&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Just+Another+Hand&family=Klee+One&display=swap");
 @font-face {
   font-family: "SpoqaHanSansNeo-Regular";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
@@ -32,6 +32,7 @@ input {
 }
 button {
   cursor: pointer;
+  font-family: inherit;
 }
 h1,
 h2,
@@ -52,7 +53,7 @@ body {
   margin: 0;
   color: #fff;
   font-family: "SpoqaHanSansNeo-Regular";
-  background-color: #0a0d1e;
+  background-color: #0d0d0d;
 }
 body.hidden {
   overflow: hidden;
